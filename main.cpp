@@ -1,5 +1,5 @@
-#include <string>
 #include <cstdlib>
+#include <string>
 
 enum Token {
   tok_eof = -1,
@@ -58,3 +58,21 @@ static int gettok() {
   LastChar = getchar();
   return ThisChar;
 }
+class ExprAST {
+public:
+  virtual ~ExprAST() = default;
+};
+
+class NumberExprAST : public ExprAST {
+  double Val;
+
+public:
+  NumberExprAST(double Val) : Val(Val) {}
+};
+
+class VariableExprAST : public ExprAST {
+  std::string Name;
+
+public:
+  VariableExprAST(const std::string &Name) : Name(Name) {}
+};
